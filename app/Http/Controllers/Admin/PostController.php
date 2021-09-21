@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -48,7 +50,8 @@ class PostController extends Controller
             'title' => 'required',
             'description' => 'required',
             'author'=> 'required',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'image'=> 'nullable|image'
 
        ]); 
 
@@ -66,6 +69,13 @@ class PostController extends Controller
             $count++;
         }
         $newPost->slug = $slug;
+
+        if(array_key_exists('image', $data)){
+            $coverPath = Storage::put('covers', $data['image']);
+
+            $data['cover'] = $coverPath;
+        }
+
         $newPost->fill($data);
 
         $newPost->save( );
