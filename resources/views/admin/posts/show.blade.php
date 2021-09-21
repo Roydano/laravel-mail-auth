@@ -9,6 +9,9 @@
         <div class="card-body">
             <h1 class="card-title">{{ $post->title}}</h1>
             <hr>
+            @if($post->cover)
+                <img src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title}}">
+            @endif
             <p class="card-text">{{ $post->description}}</p>
         </div>
         <div class="card-footer text-muted">
