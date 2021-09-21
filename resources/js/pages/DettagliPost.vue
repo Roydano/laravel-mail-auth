@@ -6,6 +6,7 @@
           <h6 v-if="dettaglio.category">{{ dettaglio.category.name }}</h6>
         </div>
         <div class="card-body">
+          <img v-if="dettaglio.cover" :src="dettaglio.cover" :alt="dettaglio.title" class="card-img-top">
           <h5 class="card-title text-center"><i>Post di {{ dettaglio.author }}</i></h5>
           <p class="card-text text-center">{{ dettaglio.description }}</p>
         </div>

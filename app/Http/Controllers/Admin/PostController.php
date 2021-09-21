@@ -129,7 +129,8 @@ class PostController extends Controller
             'title' => 'required',
             'description' => 'required',
             'author'=> 'required',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'image'=> 'nullable|image'
        ]);
        
         $data = $request->all();
@@ -144,7 +145,17 @@ class PostController extends Controller
                 $count++;
             }
 
-            $data ['slug']=$slug;        }
+            $data ['slug']=$slug;        
+        }
+
+        if(array_key_exists('image',$data)){
+            //salviamo la nostra immagine e recuperiamo il path
+            $coverPath = Storage::put('covers', $data['image']);
+
+            Storage::delete($post->cover);
+            //salviamo nella colonna della tabella posts l'immagine con il suo percorso
+            $data['cover'] = $coverPath;
+        }
 
         $post->update($data);
 
@@ -163,6 +174,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Storage::delete($post->cover);
         $post->delete();
         $post->tags()->detach();
 

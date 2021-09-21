@@ -2309,6 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'DettagliPost',
   data: function data() {
@@ -39012,6 +39013,13 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
+        _vm.dettaglio.cover
+          ? _c("img", {
+              staticClass: "card-img-top",
+              attrs: { src: _vm.dettaglio.cover, alt: _vm.dettaglio.title }
+            })
+          : _vm._e(),
+        _vm._v(" "),
         _c("h5", { staticClass: "card-title text-center" }, [
           _c("i", [_vm._v("Post di " + _vm._s(_vm.dettaglio.author))])
         ]),

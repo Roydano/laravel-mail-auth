@@ -33,6 +33,10 @@ class PostController extends Controller
         // dd($slug);
         $post = Post::where('slug', $slug)->with(['category', 'tags'])->first();
 
+        if($post->cover){
+            $post->cover = url('storage/' . $post->cover);
+        }
+
         return response()->json([
             'success' => true,
             'result' => $post
