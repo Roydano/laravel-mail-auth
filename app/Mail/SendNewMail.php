@@ -11,14 +11,16 @@ class SendNewMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $lead;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($lead)
     {
-        //
+        $this->lead = $_lead;
     }
 
     /**
