@@ -27,6 +27,7 @@ class ContactController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+        return response()->json(['success' => true ]);
 
         $newLead = new Lead();
         $newLead->fill($data);
