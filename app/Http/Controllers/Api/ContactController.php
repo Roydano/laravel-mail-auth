@@ -26,14 +26,17 @@ class ContactController extends Controller
                 'success' => false,
                 'errors' => $validator->errors()
             ]);
-        }
-        return response()->json(['success' => true ]);
+        } 
 
         $newLead = new Lead();
         $newLead->fill($data);
 
         $newLead->save();
 
-        Mail::to('info@boolpress.com')->send(new SendNewMail($newLead));
+
+        Mail::to('info@boolpress.com' )->send(new SendNewMail($newLead));
+        // Mail::to( 'proprietariosito@gmail.com' )->send(new AdminNewContact( $newLead) );
+
+        return response()->json(['success' => true ]);
     }
 }

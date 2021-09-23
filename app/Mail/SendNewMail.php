@@ -20,7 +20,7 @@ class SendNewMail extends Mailable
      */
     public function __construct($lead)
     {
-        $this->lead = $_lead;
+        $this->lead = $lead;
     }
 
     /**
